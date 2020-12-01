@@ -211,9 +211,9 @@ Visualization Manager:
           Enabled: true
           Invert Rainbow: false
           Max Color: 255; 255; 255
-          Max Intensity: 24.098873138427734
+          Max Intensity: 24.099132537841797
           Min Color: 0; 0; 0
-          Min Intensity: 2.0367469787597656
+          Min Intensity: 2.0183005332946777
           Name: allMapCloud
           Position Transformer: XYZ
           Queue Size: 10
@@ -271,9 +271,9 @@ Visualization Manager:
           Enabled: true
           Invert Rainbow: false
           Max Color: 255; 255; 255
-          Max Intensity: 24.10040283203125
+          Max Intensity: 24.100000381469727
           Min Color: 0; 0; 0
-          Min Intensity: 2.024395227432251
+          Min Intensity: 2.0184781551361084
           Name: currPoints
           Position Transformer: XYZ
           Queue Size: 10
@@ -735,25 +735,25 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/ThirdPersonFollower
-      Distance: 17.832530975341797
+      Distance: 77.81212615966797
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 0
-        Y: 0
-        Z: 0
+        X: -28.147296905517578
+        Y: 1.0513806343078613
+        Z: 3.814697265625e-6
       Focal Shape Fixed Size: false
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.2403985857963562
+      Pitch: 0.515398383140564
       Target Frame: aft_mapped
       Value: ThirdPersonFollower (rviz)
-      Yaw: 3.1303982734680176
+      Yaw: 3.1453986167907715
     Saved: ~
 Window Geometry:
   Displays:

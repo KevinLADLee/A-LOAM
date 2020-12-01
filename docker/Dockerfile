@@ -17,7 +17,8 @@ RUN if [ "x$(nproc)" = "x1" ] ; then export USE_PROC=1 ; else export USE_PROC=$(
       ros-${ROS_DISTRO}-cv-bridge \
       ros-${ROS_DISTRO}-image-transport \
       ros-${ROS_DISTRO}-message-filters \
-      ros-${ROS_DISTRO}-tf && \
+      ros-${ROS_DISTRO}-tf \
+      ros-${ROS_DISTRO}-pcl-ros && \
     rm -rf /var/lib/apt/lists/* && \
     # Build and install Ceres
     git clone https://ceres-solver.googlesource.com/ceres-solver && \
@@ -28,15 +29,6 @@ RUN if [ "x$(nproc)" = "x1" ] ; then export USE_PROC=1 ; else export USE_PROC=$(
     make -j${USE_PROC} install && \
     cd ../.. && \
     rm -rf ./ceres-solver && \
-    # Build and install pcl
-    git clone https://github.com/PointCloudLibrary/pcl.git && \
-    cd pcl && \
-    git checkout tags/pcl-${PCL_VERSION} && \
-    mkdir build && cd build && \
-    cmake .. && \
-    make -j${USE_PROC} install && \
-    cd ../.. && \
-    rm -rf ./pcl && \
     # Setup catkin workspace
     mkdir -p $CATKIN_WS/src/A-LOAM/
     
