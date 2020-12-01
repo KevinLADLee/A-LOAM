@@ -1,6 +1,6 @@
 Panels:
   - Class: rviz/Displays
-    Help Height: 155
+    Help Height: 138
     Name: Displays
     Property Tree Widget:
       Expanded:
@@ -11,8 +11,10 @@ Panels:
         - /mapping1
         - /mapping1/allMapCloud1
         - /Image1
+        - /Camera1
+        - /Camera2/Visibility1
       Splitter Ratio: 0.5
-    Tree Height: 326
+    Tree Height: 499
   - Class: rviz/Selection
     Name: Selection
   - Class: rviz/Tool Properties
@@ -31,7 +33,7 @@ Panels:
     Experimental: false
     Name: Time
     SyncMode: 0
-    SyncSource: currPoints
+    SyncSource: Camera
 Preferences:
   PromptSaveOnExit: true
 Toolbars:
@@ -57,7 +59,8 @@ Visualization Manager:
       Plane Cell Count: 160
       Reference Frame: <Fixed Frame>
       Value: false
-    - Class: rviz/Axes
+    - Alpha: 1
+      Class: rviz/Axes
       Enabled: true
       Length: 1
       Name: Axes
@@ -83,6 +86,7 @@ Visualization Manager:
             Z: 0
           Pose Color: 255; 85; 255
           Pose Style: None
+          Queue Size: 10
           Radius: 0.029999999329447746
           Shaft Diameter: 0.10000000149011612
           Shaft Length: 0.10000000149011612
@@ -106,6 +110,7 @@ Visualization Manager:
             Z: 0
           Pose Color: 255; 85; 255
           Pose Style: None
+          Queue Size: 10
           Radius: 0.029999999329447746
           Shaft Diameter: 0.10000000149011612
           Shaft Length: 0.10000000149011612
@@ -133,6 +138,7 @@ Visualization Manager:
             Z: 0
           Pose Color: 255; 85; 255
           Pose Style: None
+          Queue Size: 10
           Radius: 0.029999999329447746
           Shaft Diameter: 0.10000000149011612
           Shaft Length: 0.10000000149011612
@@ -190,6 +196,7 @@ Visualization Manager:
             Z: 0
           Pose Color: 255; 85; 255
           Pose Style: None
+          Queue Size: 10
           Radius: 0.029999999329447746
           Shaft Diameter: 0.10000000149011612
           Shaft Length: 0.10000000149011612
@@ -211,9 +218,9 @@ Visualization Manager:
           Enabled: true
           Invert Rainbow: false
           Max Color: 255; 255; 255
-          Max Intensity: 24.099132537841797
+          Max Intensity: 24.097394943237305
           Min Color: 0; 0; 0
-          Min Intensity: 2.0183005332946777
+          Min Intensity: 2.0250790119171143
           Name: allMapCloud
           Position Transformer: XYZ
           Queue Size: 10
@@ -271,9 +278,9 @@ Visualization Manager:
           Enabled: true
           Invert Rainbow: false
           Max Color: 255; 255; 255
-          Max Intensity: 24.100000381469727
+          Max Intensity: 24.09980010986328
           Min Color: 0; 0; 0
-          Min Intensity: 2.0184781551361084
+          Min Intensity: 2.025050163269043
           Name: currPoints
           Position Transformer: XYZ
           Queue Size: 10
@@ -483,6 +490,7 @@ Visualization Manager:
             Z: 0
           Pose Color: 255; 85; 255
           Pose Style: None
+          Queue Size: 10
           Radius: 0.029999999329447746
           Shaft Diameter: 0.10000000149011612
           Shaft Length: 0.10000000149011612
@@ -646,7 +654,7 @@ Visualization Manager:
       Enabled: false
       Name: scan
     - Class: rviz/Image
-      Enabled: true
+      Enabled: false
       Image Topic: /carla/ego_vehicle/camera/rgb/view/image_color
       Max Value: 1
       Median window: 5
@@ -656,12 +664,12 @@ Visualization Manager:
       Queue Size: 2
       Transport Hint: raw
       Unreliable: false
-      Value: true
+      Value: false
     - Class: rviz/TF
       Enabled: true
       Frame Timeout: 15
       Frames:
-        213:
+        290:
           Value: true
         All Enabled: true
         aft_mapped:
@@ -684,14 +692,31 @@ Visualization Manager:
           Value: true
         map:
           Value: true
+      Marker Alpha: 1
       Marker Scale: 1
       Name: TF
       Show Arrows: true
       Show Axes: true
       Show Names: true
       Tree:
-        camera_init:
-          aft_mapped:
+        map:
+          290:
+            ego_vehicle:
+              {}
+          camera_init:
+            aft_mapped:
+              {}
+          ego_vehicle/camera/depth/front:
+            {}
+          ego_vehicle/camera/rgb/front:
+            {}
+          ego_vehicle/camera/rgb/view:
+            {}
+          ego_vehicle/gnss/gnss1:
+            {}
+          ego_vehicle/imu/imu1:
+            {}
+          ego_vehicle/lidar/lidar1:
             {}
       Update Interval: 0
       Value: true
@@ -707,6 +732,98 @@ Visualization Manager:
       Transport Hint: raw
       Unreliable: false
       Value: false
+    - Class: rviz/Camera
+      Enabled: true
+      Image Rendering: background and overlay
+      Image Topic: /carla/ego_vehicle/camera/rgb/view/image_color
+      Name: Camera
+      Overlay Alpha: 0.5
+      Queue Size: 2
+      Transport Hint: raw
+      Unreliable: false
+      Value: true
+      Visibility:
+        Axes: true
+        Camera: true
+        GT:
+          Value: true
+          gtPathLidar: true
+          gtPathlc: true
+        Grid: true
+        Image: true
+        TF: true
+        Value: true
+        mapping:
+          Value: true
+          allMapCloud: true
+          corner: true
+          currPoints: true
+          leftcameraPath: true
+          map_corner: true
+          map_surf: true
+          mappingPath: true
+          surf: true
+          surround: true
+          used_corner: true
+          used_surf: true
+        odometry:
+          PointCloud2: true
+          Value: true
+          odomPath: true
+        scan:
+          Value: true
+          flat: true
+          raw_data: true
+          removPoints: true
+          scan: true
+          sharp: true
+      Zoom Factor: 1
+    - Class: rviz/Camera
+      Enabled: true
+      Image Rendering: overlay
+      Image Topic: /carla/ego_vehicle/camera/rgb/front/image_color
+      Name: Camera
+      Overlay Alpha: 0.5
+      Queue Size: 2
+      Transport Hint: raw
+      Unreliable: false
+      Value: true
+      Visibility:
+        Axes: true
+        Camera: true
+        GT:
+          Value: true
+          gtPathLidar: true
+          gtPathlc: true
+        Grid: true
+        Image: true
+        TF: false
+        Value: true
+        mapping:
+          Value: true
+          allMapCloud: true
+          corner: true
+          currPoints: true
+          leftcameraPath: true
+          map_corner: true
+          map_surf: true
+          mappingPath: true
+          surf: true
+          surround: true
+          used_corner: true
+          used_surf: true
+        odometry:
+          PointCloud2: true
+          Value: true
+          odomPath: true
+        scan:
+          Value: true
+          flat: true
+          raw_data: true
+          removPoints: true
+          scan: true
+          sharp: true
+      Zoom Factor: 1
   Enabled: true
   Global Options:
     Background Color: 0; 0; 0
@@ -735,35 +852,37 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/ThirdPersonFollower
-      Distance: 77.81212615966797
+      Distance: 5.532288551330566
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
+      Field of View: 0.7853981852531433
       Focal Point:
-        X: -28.147296905517578
-        Y: 1.0513806343078613
-        Z: 3.814697265625e-6
+        X: -3.5632972717285156
+        Y: -2.733727216720581
+        Z: 2.169043455069186e-06
       Focal Shape Fixed Size: false
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.515398383140564
+      Pitch: 0.48539844155311584
       Target Frame: aft_mapped
-      Value: ThirdPersonFollower (rviz)
-      Yaw: 3.1453986167907715
+      Yaw: 3.9854025840759277
     Saved: ~
 Window Geometry:
+  Camera:
+    collapsed: false
   Displays:
     collapsed: false
-  Height: 1056
+  Height: 2032
   Hide Left Dock: false
   Hide Right Dock: false
   Image:
     collapsed: false
-  QMainWindow State: 000000ff00000000fd00000004000000000000016100000371fc020000000bfb0000001200530065006c0065006300740069006f006e00000001e10000009b0000006e00fffffffb0000001e0054006f006f006c002000500072006f007000650072007400690065007302000001ed000001df00000185000000a3fb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afb000000100044006900730070006c006100790073010000004700000228000000f100fffffffb0000002000730065006c0065006300740069006f006e00200062007500660066006500720200000138000000aa0000023a00000294fb00000014005700690064006500530074006500720065006f02000000e6000000d2000003ee0000030bfb0000000c004b0069006e0065006300740200000186000001060000030c00000261fb0000000a0049006d00610067006500000002f6000000c20000001900fffffffb0000000c00430061006d00650072006100000002d5000000190000000000000000fb0000000a0049006d0061006700650100000276000001420000001900ffffff000000010000010f00000371fc0200000003fb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000041000000780000000000000000fb0000000a00560069006500770073010000004700000371000000c200fffffffb0000001200530065006c0065006300740069006f006e010000025a000000b200000000000000000000000200000490000000a9fc0100000001fb0000000a00560069006500770073030000004e00000080000002e100000197000000030000073f00000040fc0100000002fb0000000800540069006d006501000000000000073f0000037100fffffffb0000000800540069006d00650100000000000004500000000000000000000004c10000037100000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  QMainWindow State: 000000ff00000000fd000000040000000000000403000006eefc020000000dfb0000001200530065006c0065006300740069006f006e00000001e10000009b000000b000fffffffb0000001e0054006f006f006c002000500072006f007000650072007400690065007302000001ed000001df00000185000000a3fb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afb000000100044006900730070006c006100790073010000006e000002eb0000018200fffffffb0000002000730065006c0065006300740069006f006e00200062007500660066006500720200000138000000aa0000023a00000294fb00000014005700690064006500530074006500720065006f02000000e6000000d2000003ee0000030bfb0000000c004b0069006e0065006300740200000186000001060000030c00000261fb0000000a0049006d00610067006500000002f6000000c20000002600fffffffb0000000c00430061006d0065007200610100000365000001f00000002600fffffffb0000000a0049006d006100670065000000046b000001c40000002600fffffffb0000000c00430061006d0065007200610100000561000001fb0000002600fffffffb0000000c00430061006d0065007200610100000520000001560000000000000000000000010000015f000006eefc0200000003fb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000041000000780000000000000000fb0000000a00560069006500770073010000006e000006ee0000013200fffffffb0000001200530065006c0065006300740069006f006e010000025a000000b200000000000000000000000200000490000000a9fc0100000001fb0000000a00560069006500770073030000004e00000080000002e1000001970000000300000e700000005afc0100000002fb0000000800540069006d0065010000000000000e700000057100fffffffb0000000800540069006d00650100000000000004500000000000000000000008f6000006ee00000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
   Selection:
     collapsed: false
   Time:
@@ -772,6 +891,6 @@ Window Geometry:
     collapsed: false
   Views:
     collapsed: false
-  Width: 1855
-  X: 65
-  Y: 34
+  Width: 3696
+  X: 144
+  Y: 54

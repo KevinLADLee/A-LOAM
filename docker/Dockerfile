@@ -1,13 +1,12 @@
-FROM harbor.isus.tech/osrf/ros:melodic-desktop-full-bionic
+FROM harbor.isus.tech/osrf/ros:noetic-desktop-focal
 
 ENV NVIDIA_VISIBLE_DEVICES \
     ${NVIDIA_VISIBLE_DEVICES:-all}
 ENV NVIDIA_DRIVER_CAPABILITIES \
     ${NVIDIA_DRIVER_CAPABILITIES:+$NVIDIA_DRIVER_CAPABILITIES,}graphics
 
-ENV CERES_VERSION="1.12.0"
 ENV PCL_VERSION="1.8.0"
-ENV ROS_DISTRO="melodic"
+ENV ROS_DISTRO="noetic"
 ENV CATKIN_WS=/root/catkin_ws
 
 RUN sed -i "s@http://.*archive.ubuntu.com@http://mirrors.huaweicloud.com@g" /etc/apt/sources.list && \
@@ -16,22 +15,26 @@ RUN sed -i "s@http://.*archive.ubuntu.com@http://mirrors.huaweicloud.com@g" /etc
 
     # setup processors number used to compile library
 RUN apt-get update && apt-get install -y \
+      git \
       cmake \
+      wget \
+      curl \
       libatlas-base-dev \
       libeigen3-dev \
       libgoogle-glog-dev \
       libsuitesparse-dev \
-      python-catkin-tools \
       libceres-dev \
+      libflann-dev \
+      python3-catkin-tools \
+      python3-osrf-pycommon \
       ros-${ROS_DISTRO}-cv-bridge \
       ros-${ROS_DISTRO}-image-transport \
       ros-${ROS_DISTRO}-message-filters \
       ros-${ROS_DISTRO}-tf \
       ros-${ROS_DISTRO}-pcl-ros && \
     rm -rf /var/lib/apt/lists/* && \
-    # Setup catkin workspace
     mkdir -p $CATKIN_WS/src/A-LOAM/
-    
+
 # WORKDIR $CATKIN_WS/src
 
 # Copy A-LOAM

@@ -12,10 +12,11 @@
     <param name="mapping_line_resolution" type="double" value="0.2"/>
     <param name="mapping_plane_resolution" type="double" value="0.4"/>
 
+    <node pkg="tf" type="static_transform_publisher" name="link1_broadcaster" args="190 -150 2.653 -0.000 0.000 -0.707 0.707 map camera_init 100" />
+
     <node pkg="aloam_velodyne" type="ascanRegistration" name="ascanRegistration" output="screen" >
         <remap from="/velodyne_points" to="/carla/ego_vehicle/lidar/lidar1/point_cloud"/>
     </node>
-
 
     <node pkg="aloam_velodyne" type="alaserOdometry" name="alaserOdometry" output="screen" />
 
