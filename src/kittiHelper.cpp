@@ -22,6 +22,10 @@
 #include <pcl_conversions/pcl_conversions.h>
 #include <sensor_msgs/PointCloud2.h>
 
+#if CV_VERSION_MAJOR == 4
+#define CV_LOAD_IMAGE_GRAYSCALE cv::IMREAD_GRAYSCALE
+#endif
+
 std::vector<float> read_lidar_data(const std::string lidar_data_path)
 {
     std::ifstream lidar_data_file(lidar_data_path, std::ifstream::in | std::ifstream::binary);
@@ -36,6 +40,10 @@ std::vector<float> read_lidar_data(const std::string lidar_data_path)
 
 int main(int argc, char** argv)
 {
+
+
+
+
     ros::init(argc, argv, "kitti_helper");
     ros::NodeHandle n("~");
     std::string dataset_folder, sequence_number, output_bag_file;
@@ -83,15 +91,18 @@ int main(int argc, char** argv)
     std::size_t line_num = 0;
 
     ros::Rate r(10.0 / publish_delay);
+
     while (std::getline(timestamp_file, line) && ros::ok())
     {
         float timestamp = stof(line);
         std::stringstream left_image_path, right_image_path;
         left_image_path << dataset_folder << "sequences/" + sequence_number + "/image_0/" << std::setfill('0') << std::setw(6) << line_num << ".png";
+
+
+
         cv::Mat left_image = cv::imread(left_image_path.str(), CV_LOAD_IMAGE_GRAYSCALE);
         right_image_path << dataset_folder << "sequences/" + sequence_number + "/image_1/" << std::setfill('0') << std::setw(6) << line_num << ".png";
         cv::Mat right_image = cv::imread(left_image_path.str(), CV_LOAD_IMAGE_GRAYSCALE);
-
         std::getline(ground_truth_file, line);
         std::stringstream pose_stream(line);
         std::string s;
